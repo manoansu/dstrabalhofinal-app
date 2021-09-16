@@ -2,6 +2,8 @@ package pt.amane.dstrabalhofinal.services;
 
 import java.util.Optional;
 
+import javax.persistence.EntityNotFoundException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -33,6 +35,7 @@ public class ClientService {
 		return clients.map(dto -> new ClientDTO(dto));
 	}
 
+	@Transactional
 	public ClientDTO create(ClientDTO dto) {
 		Client client = new Client();
 		client = copyClientEntity(client, dto);
@@ -41,7 +44,21 @@ public class ClientService {
 	}
 
 	@Transactional
-	private Client copyClientEntity(Client client,ClientDTO dto) {
+	public ClientDTO update(Long id, ClientDTO dto) {
+		try {
+			Client client = repository.getOne(id);
+			client = copyClientEntity(client, dto);
+			client = repository.save(client);
+			return new ClientDTO(client);
+		} catch (EntityNotFoundException e) {
+			throw new ObjectNotFoundException("Id not found! Id: " + id + ", Type: " + ClientDTO.class.getName());
+		}
+
+	}
+
+	
+	
+	private Client copyClientEntity(Client client, ClientDTO dto) {
 		client.setName(dto.getName());
 		client.setBirthDate(dto.getBirthDate());
 		client.setChildren(dto.getChildren());
