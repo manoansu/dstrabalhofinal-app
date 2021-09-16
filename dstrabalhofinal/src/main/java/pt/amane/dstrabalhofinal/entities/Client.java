@@ -62,7 +62,7 @@ public class Client implements Serializable {
 		return birthDate;
 	}
 
-	public Integer getChilden() {
+	public Integer getChildren() {
 		return children;
 	}
 
@@ -86,8 +86,8 @@ public class Client implements Serializable {
 		this.birthDate = birthDate;
 	}
 
-	public void setChilden(Integer childen) {
-		this.children = childen;
+	public void setChildren(Integer children) {
+		this.children = children;
 	}
 
 	@Override
