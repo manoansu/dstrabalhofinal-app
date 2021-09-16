@@ -27,19 +27,19 @@ public class Client implements Serializable {
 	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
 	private Instant birthDate;
 
-	private Integer childen;
+	private Integer children;
 
 	public Client() {
 	}
 
-	public Client(Long id, String name, String cpf, Double income, Instant birthDate, Integer childen) {
+	public Client(Long id, String name, String cpf, Double income, Instant birthDate, Integer children) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.cpf = cpf;
 		this.income = income;
 		this.birthDate = birthDate;
-		this.childen = childen;
+		this.children = children;
 	}
 
 	public Long getId() {
@@ -63,7 +63,7 @@ public class Client implements Serializable {
 	}
 
 	public Integer getChilden() {
-		return childen;
+		return children;
 	}
 
 	public void setId(Long id) {
@@ -87,7 +87,7 @@ public class Client implements Serializable {
 	}
 
 	public void setChilden(Integer childen) {
-		this.childen = childen;
+		this.children = childen;
 	}
 
 	@Override
